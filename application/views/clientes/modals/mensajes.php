@@ -6,6 +6,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</div>
+				<form id="formclie" url="clientes/addCliente">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-12">
@@ -22,7 +23,7 @@
 								<label for="cm">Nombre Comercial</label>
 								<div class="input-group">
 									<span class="input-group-addon succes" id="basic-addon2"><i class="fa fa-star" aria-hidden="true"></i></span>
-									<input required type="text" name="NC" class="form-control" id="cm" lln="NombreComercial">
+									<input  type="text" name="NC" class="form-control" id="cm" lln="NombreComercial">
 								</div>
 							</div>
 						</div>
@@ -110,6 +111,7 @@
 								<div class="input-group">
 									<span class="input-group-addon succes" id="basic-addon2"><i class="fa fa-users" aria-hidden="true"></i></span>
 									<select required  name="Grupo" class="form-control" id="grupo" lln="Grupo">
+										<option value="">Selecciona</option>
 										<?php
 										if($grupos!=false){
 
@@ -148,14 +150,14 @@
 												<label required for="email">Correo Electrónico</label>
 												<div class="input-group">
 													<span class="input-group-addon succes" id="basic-addon2"><i class="fa fa-building-o" aria-hidden="true"></i></span>
-													<input required name="Email" type="email"  class="form-control" id="email" lln="Email">
+													<input  name="Email" type="email"  class="form-control" id="email" lln="Email">
 												</div>
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="form-group">
 												<label for="tel">Teléfono</label>
-												<div required class="input-group">
+												<div  class="input-group">
 													<span class="input-group-addon succes" id="basic-addon2"><i class="fa fa-phone" aria-hidden="true"></i></span>
 													<input  name="Tel" class="form-control tel" type="text" id="tel" lln="Telefono">
 												</div>
@@ -173,10 +175,10 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button  id="btnadd-clie" class="btn btn-primary" >Guardar</button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+					<div   id="btnadd-clie" class="btn btn-primary" >Guardar</div>
+					<div type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</div>
 				</div>
-			
+			</form>
 			</div>
 		</div>
 	</div>

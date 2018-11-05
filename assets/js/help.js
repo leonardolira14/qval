@@ -24,6 +24,14 @@ function helper(){
 		}
 		
 	}
+	that.sendform=function(url,form,callback){
+		var datosusuario=JSON.parse(help.getcokie("datusuario"));
+		var empresa=datosusuario.Mensaje[0].IDEmpresa;
+		datos=form.serialize()+"&empresa="+empresa;
+			$.post(config.urldata+url,datos,function(resp){
+				callback(JSON.parse(resp));
+			})
+		}
 	that.sendfile=function(url,datau,alert,callback){
 		$.ajax({
 			type:"POST",
@@ -486,7 +494,7 @@ function helper(){
 	}
 	//termina las funciones para los usuarios
 	//funcion para los clientes
-	that.loadclientes=function(){
+	that.loadclientes=function(palabra=""){
 		var funt=JSON.parse(help.getcokie("datusuario"));
 		var funct=JSON.parse(funt.Mensaje[0].funciones);
 		if(funct[3]==="1"){
@@ -494,7 +502,7 @@ function helper(){
 			$(".item-menu").removeClass("active");
 			$("#mun-clie.item-menu").addClass("active");
 			$("#mun-clie.item-menu").find(".sub-menu").fadeIn(1000);
-			var tp={"empresa":empresa}
+			var tp={"empresa":empresa,"palabra":palabra}
 			that.loadview("clientes",tp);
 		}else{
 			help.msjerror("No tiene permisos para esta accion, contacte al administrador.");
@@ -870,6 +878,8 @@ $(document).on("click","#btn-login",function(){
 		}
 	})
 })
+
+
 $(document).on("change","#altausexpfiel",function(){
 	
 	var frm=$("#altaexpres form#frmchang");

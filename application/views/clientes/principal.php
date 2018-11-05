@@ -23,12 +23,12 @@
 						<div class="col-12 text-rigth m-b-20"><!---->
 							<div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Buscar" aria-label="Input group example" aria-describedby="btnGroupAddon2">
-									<button class="btn btn-primary" ><i class="fa fa-search" aria-hidden="true"></i></button>
+									<input type="text" class="form-control" placeholder="Buscar" aria-label="Input group example" name="palabra" aria-describedby="btnGroupAddon2">
+									<button class="btn btn-primary" llc="buscar"><i class="fa fa-search" aria-hidden="true"></i></button>
 								</div>
 								<div class="btn-group" role="group" aria-label="First group">
 									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Add-cliente"><i class="fa fa-user-plus" aria-hidden="true"></i> Alta</button>
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalexpresclie"><i class="fa fa-address-book-o" aria-hidden="true"></i> Alta exprés</button>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalexpresclie"><i class="fa fa-address-book-o" aria-hidden="true"></i> Alta expréss</button>
 									<div class="btn-group" role="group">
 										<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<i class="fa fa-file-text" aria-hidden="true"></i> Exportar

@@ -24,18 +24,20 @@ class Model_Clientes extends CI_Model
 	//filas de los clienetes
 	public function filas($empresa,$estado)
 	{
-		$sql=$this->db->where("IDEmpresa='$empresa' and Estado='$estado'")->get('clientes');
-		return $sql->num_rows();
+		 return $this->db->where("IDEmpresa='$empresa' and Estado='$estado'")->count_all("clientes");
 	}
-	public function total_paginados($empresa,$por_pagina,$segmento,$estado){
-		$consulta = $this->db->where("IDEmpresa='$empresa' and Estado='$estado'")->order_by("IDCliente","DESC")->get('clientes',$por_pagina,$segmento);
+	public function total_paginados($palabra,$empresa,$por_pagina,$segmento,$estado){
+		$consulta = $this->db->like("Nombre",$palabra)->where("IDEmpresa='$empresa' and Estado='$estado'")->order_by("Nombre","ASC")->limit($por_pagina,$segmento)->get('clientes');
+		//vdebug($consulta->result());
 		if($consulta->num_rows()>0)
         {
             foreach($consulta->result() as $fila){
             	$data[] = $fila;
             }
+
              return $data;
         }
+
 	}
 	//funcion para agregar un cliente 
 	public function AddCliente($Tipocontribuyente,$empresa,$rz,$nombrecomer,$rfc,$IDConfig,$Pais,$Estado,$muicipio,$calle,$Apellido,$Puesto,$correo,$tel){

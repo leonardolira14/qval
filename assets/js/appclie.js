@@ -29,42 +29,37 @@ var cleave = new Cleave('#Add-cliente .tel', {
     phone: true,
     phoneRegionCode: 'MX'
 });
-$(document).on('click','#Add-cliente #btnadd-clie',function(){
-	var tip={};
-	tip["data"]=help.validardor("#Add-cliente .modal-body","#Add-cliente .alert");
-	console.log(tip);
-	if(tip["data"]!=false){
-		tip["empresa"]=empresa;
-		help.senddata(tip,"clientes/addCliente",function(res){
-			if(res.pass==1){
-				$("#Add-cliente").modal('toggle');
-				setTimeout(function(){
-					help.loadclientes();
-				},1000)
-			}
-		})
-	}else{
-		return false;
-	}
+$(document).on('click','div.btn-primary#btnadd-clie',function(event){
+	var form=$("#formclie");
+	var url=form.attr("url");
+	var alert=$(".alert.alert-info");
+	help.sendform(url,form,function(resp){
+		if(resp.pass===0){
+			alert.html(resp.mensaje)
+		}else{
+			$("#Add-cliente").modal("hide");
+		}
+		console.log(resp);
+	});
+	
+		
 })
-$(document).on("click","#Add-cliente .btn-primary",function(){
-	console.log($(this).attr("id"))
-	tip={};
-	tip["numc"]=$(this).attr("id");
-	tip["data"]=help.validardor("#Add-cliente .modal-body","#Add-cliente .alert");
-	if(tip["data"]!=false){
-		tip["empresa"]=empresa;
-		help.senddata(tip,"clientes/ModCliente",function(res){
-			if(res.pass==1){
-						$("#Add-cliente").modal('toggle');
-						setTimeout(function(){
-							help.loadclientes();
-						},1000)
-					}
-				})
-	}else{
-		return false;
-	}
+$(document).on("click",'div.btn-primary#btnmod-clie',function(){
+	var form=$("#formclie");
+	var url=form.attr("url");
+	var alert=$(".alert.alert-info");
+	help.sendform(url,form,function(resp){
+		if(resp.pass===0){
+			alert.html(resp.mensaje)
+		}else{
+			$("#Add-cliente").modal("hide");
+		}
+		console.log(resp);
+	});
+})
+$(document).on("click","button[llc='buscar']",function(){
+	var palabra=$("input[name='palabra']").val();
+	help.loadclientes(palabra);
 })
 $(document).on("click",".accion-funCl .dropdown-item",function(){
 	var tip={};
@@ -74,6 +69,8 @@ $(document).on("click",".accion-funCl .dropdown-item",function(){
 			help.senddata(tip,"clientes/readClie",function(resp){
 				console.log(resp.datos)
 				$.each(resp.datos,function(index,datos){
+					$("#Add-cliente Form").attr("url","clientes/ModCliente");
+					$("#Add-cliente Form").append("<input name='cliente' type='hidden' value="+datos.IDCliente+" />" );
 					$("#Add-cliente input[name='Email']").val(datos.Correo);
 					$("#Add-cliente input[name='RZ']").val(datos.Nombre);
 					$("#Add-cliente input[name='NC']").val(datos.NombreComercial);
@@ -87,7 +84,7 @@ $(document).on("click",".accion-funCl .dropdown-item",function(){
 					$("#Add-cliente input[name='Puesto']").val(datos.Puesto);
 					$("#Add-cliente input[name='Apellidos']").val(datos.Apellidos);
 					$("#Add-cliente select[name='TPersona']").val(datos.TPersona);
-					$("#Add-cliente #btnadd-clie").attr("id",datos.IDCliente);
+					$("#Add-cliente #btnadd-clie").attr("id","btnmod-clie");
 					$("#Add-cliente").modal("show");
 				})
 			})
@@ -121,4 +118,7 @@ $(document).on("click","#exporjsonclie",function(){
 		return false;
 	})
 	
+})
+$("#Add-cliente").on('hidden.bs.modal', function (e) {
+  help.loadclientes();
 })

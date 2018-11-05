@@ -5,7 +5,7 @@
 * pagination-lg = grande
 */
 
-$config['enable_query_strings']=true;
+$config['enable_query_strings']=TRUE;
 $config['page_query_string'] = TRUE;
 $config['use_page_numbers'] = TRUE;
 $config['full_tag_open'] = '<ul class="pagination pagination-md">';
